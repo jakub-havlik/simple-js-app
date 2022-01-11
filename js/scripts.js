@@ -6,7 +6,7 @@
 
 let pokemonRepository = (function () {
 
-  let pokemonList = [
+  let repository = [
       {
           name: 'Venusaur',
           types: ['grass', 'poison'],
@@ -43,37 +43,50 @@ let pokemonRepository = (function () {
           height: 0.3,
           pokedexNumber: '#175'
       }
-  ]
-
-
-  function getAll() {
-    return pokemonList;
-  }
+  ];
 
   function add(pokemon) {
     if (
       typeof pokemon === 'object' &&
-      'name' in pokemon &&
-      'types' in pokemon &&
-      'height' in pokemon &&
-      'pokedexNumber' in pokemon
+      !Array.isArray(pokemon) &&
+      pokemon !== null
     ) {
-      pokemonList.push(pokemon);
+      repository.push(pokemon);
     } else {
-      console.log('Pokemon is not correct')
+      console.log('Pokemon is not correct');
     }
+  }
+
+  function getAll() {
+    return repository;
+  }
+
+  function addListItem(pokemon) {
+    let pokemonList = document.querySelector(".pokemon-list");
+    let pokemonListItem = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    pokemonListItem.appendChild(button);
+    pokemonList.appendChild(pokemonListItem);
+    //on-click event
+    button.addEventListener('click', function() {
+      showDetails(pokemon)
+    });
+  }
+
+  function showDetails(pokemon) {
+    console.log(pokemon);
   }
 
   //IIFE returns an object with public functions assigned as keys
   return {
+    add: add,
     getAll: getAll,
-    add: add
-  }
+    addListItem: addListItem
+  };
 
 }) ()
-
-//console.log(pokemonRepository.getAll);
-//console.log(pokemonRepository.add);
 
 
 //add a new pokemon to the pokemonList
@@ -86,19 +99,8 @@ let newPokemon = {
 
 pokemonRepository.add(newPokemon);
 
+//console.log(pokemonRepository.getAll);
 
-//define function writing the list of pokemons
-function pokemonWrite(pokemon) {
-  let _html = `<br>${pokemon.name} (height: ${pokemon.height}) ${
-    pokemon.height < 1.7 && pokemon.height > 0.5
-      ? "- this pokemon is kind of average..."
-      : pokemon.height <= 0.5
-      ? "- this pokemon is really tiny!"
-      : "- this pokemon is bigger than I thought!"
-  }`;
-  document.write(_html);
-}
-//retrieve pokemonList from the IIFE
-let retrievePokemonList = pokemonRepository.getAll();
-//iterate over each pokemon in the repository using forEach() loop
-retrievePokemonList.forEach(pokemonWrite);
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
+});
