@@ -91,7 +91,8 @@ let pokemonRepository = (function () {
       return response.json();
     }).then(function (details) {
       // Now we add the details to the pokemon
-      pokemon.types = details.types;
+      // flatten the array and map
+      pokemon.types =  details.types.flatMap((element) => element.type.name);
       pokemon.height = details.height;
       pokemon.weight = details.weight;
       pokemon.imageURL = details.sprites.front_default;
