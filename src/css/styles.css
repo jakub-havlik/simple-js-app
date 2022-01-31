@@ -1,0 +1,97 @@
+body {
+  font-family:'Ubuntu', sans-serif;
+  background-color: #ADD8E6;
+}
+
+.title {
+  font-size: 60px;
+  color: #7509a8;
+}
+
+/* FLEX-WRAP VIA BOOTSTRAP */
+
+.pokemon-app {
+  list-style-type: none;
+  max-width:1100px;
+}
+
+.pokemon-app li {
+  margin: auto;
+  padding: 10px;
+  display: flex;
+}
+
+.pokemon-app img {
+  display: block;
+  width: 125px;
+  height: 125px;
+}
+
+/* BUTTON STYLING */
+
+.button {
+  border: 1px solid #7509a8;
+  padding: 10px;
+  border-radius: 10%;
+}
+
+.button:hover {
+  background: rgba(0, 0, 100, 0.0);
+}
+
+/* SEARCHBAR STYLING */
+
+.search-input {
+  margin: auto;
+  padding: 10px;
+}
+
+.search-input {
+  background-color: #ADD8E6;
+  width: 200px;
+  border: 2px solid rgba(0, 0, 100, 0.3);
+}
+
+.search-input:hover {
+  border: 2px solid rgba(0, 0, 100, 0.6);
+  background: white;
+  transition: 0.5s;
+}
+
+/* MODAL */
+
+.details-list {
+  text-decoration: none!important;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 5px;
+  padding: 5px;
+}
+
+.modal-info {
+  padding: 10px;
+  margin: auto;
+}
+
+.modal-content {
+  border: 2px solid;
+  border-color: #7509a8;
+  background-color: white;
+  text-align: center;
+}
+
+/* MEDIA QUERIES */
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .title {
+    font-size: 40px;
+  }
+  h1{font-size: 20px;}
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .title {
+    font-size: 50px;
+  }
+}
